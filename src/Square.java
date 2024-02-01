@@ -11,6 +11,8 @@
  */
 
 public class Square {
+    // TODO: Our Square objects should be responsible for drawing themselves into the UI
+    //TODO: How can our Square objects keep track of and interact with the TicTacToeViewer object?
 
     private String marker;
     private int row;

@@ -11,7 +11,8 @@
  */
 
 import java.util.Scanner;
-
+// TODO: add some code to connect the backend to the frontend
+// TODO: How can our TicTacToe object keep track of and interact with the TicTacToeViewer object?
 public class TicTacToe
 {
     /** Board Markers **/
