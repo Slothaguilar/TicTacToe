@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * A class written to support the TicTacToe Game.
  *
@@ -11,8 +13,6 @@
  */
 
 public class Square {
-    // TODO: Our Square objects should be responsible for drawing themselves into the UI
-    //TODO: How can our Square objects keep track of and interact with the TicTacToeViewer object?
 
     private String marker;
     private int row;
@@ -59,5 +59,13 @@ public class Square {
      */
     public String toString() {
         return this.marker;
+    }
+    // TODO: Our Square objects should be responsible for drawing themselves into the UI
+    //TODO: How can our Square objects keep track of and interact with the TicTacToeViewer object?
+    public void draw(Graphics g) {
+        // square draw itself
+
+        // should draw the right image
+        g.drawRect(150 + (row*100), 150 + (col*100), 100, 100);
     }
 }
