@@ -20,8 +20,8 @@ public class TicTacToeViewer extends JFrame {
     private TicTacToe t;
 
     // constructor
-    public TicTacToeViewer(TicTacToe t){
-        this.t = t;
+    public TicTacToeViewer(TicTacToe a) {
+        this.t = a;
         xImage = new ImageIcon("Resources/X.png").getImage();
         oImage = new ImageIcon("Resources/O.png").getImage();
 
@@ -47,45 +47,115 @@ public class TicTacToeViewer extends JFrame {
         g.drawString("2", 100, 400);
 
         // have the square draw itself
-        // t.getBoard()[0][0].draw(g);
-        for (int i = 0; i < t.getBoard().length; i++){
-            for (int j = 0; j < t.getBoard()[0].length; j++){
+        // drawing the board
+        for (int i = 0; i < t.getBoard().length; i++) {
+            for (int j = 0; j < t.getBoard()[0].length; j++) {
                 t.getBoard()[i][j].draw(g);
                 // update the fornt end with each move
                 // ask for the marker , X or O and place where they are
-                if (t.getBoard()[i][j].getMarker() == TicTacToe.O_MARKER){
-                    // draw an o
-                    // g.drawImage(oImage, i, j, this);
-                    g.drawImage(oImage,150 + (j *100), 150 + (i*100),100, 100, this);
-                }
-                else if (t.getBoard()[i][j].getMarker() == TicTacToe.X_MARKER){
-                    // dran an X in teh place
-                    //g.drawImage(xImage,i, j, this);
-                    g.drawImage(xImage,150 + (j *100), 150 + (i*100),100, 100, this);
-                }
-                // print out the winner
-                if (t.getGameOver()){
-                    // first check tiq
-                    if (t.checkTie()){
-                        g.drawString("Tie", 300, 500);
+                    if (t.getBoard()[i][j].getMarker() == TicTacToe.O_MARKER) {
+                        // draw an o
+                        // g.drawImage(oImage, i, j, this);
+                        g.drawImage(oImage, 150 + (j * 100), 150 + (i * 100), 100, 100, this);
+                    } else if (t.getBoard()[i][j].getMarker() == TicTacToe.X_MARKER) {
+                        // dran an X in teh place
+                        //g.drawImage(xImage,i, j, this);
+                        g.drawImage(xImage, 150 + (j * 100), 150 + (i * 100), 100, 100, this);
                     }
-                    else{
+
+        }
+
+        }
+        // when the game is over
+        if (t.getGameOver()){
+            for (int i = 0; i < t.getBoard().length; i++){
+                for (int j = 0; j < t.getBoard()[0].length; j++){
                         // get winner
-                        String winner = t.getWinner();
+                    // t.getBoard()[i][j].draw(g);
                         // TODO: set the squares to green
+                        int x = 2- j;
+                        if (t.getWinDirections() == t.ROW_WIN) {
+                            g.setColor(Color.GREEN);
+                            g.fillRect(150 + (j * 100), 150 + (t.getWinIndex() * 100), 100, 100);
+                            if (t.getBoard()[t.getWinIndex()][j].getMarker() == TicTacToe.O_MARKER) {
+                                // draw an o
+                                // g.drawImage(oImage, i, j, this);
+                                g.drawImage(oImage, 150 + (j * 100), 150 + (t.getWinIndex() * 100), 100, 100, this);
+                            } else if (t.getBoard()[t.getWinIndex()][j].getMarker() == TicTacToe.X_MARKER) {
+                                // dran an X in teh place
+                                //g.drawImage(xImage,i, j, this);
+                                g.drawImage(xImage, 150 + (j * 100), 150 + (t.getWinIndex() * 100), 100, 100, this);
+                            }
+                            g.setColor(Color.black);
+                            t.getBoard()[j][t.getWinIndex()].draw(g);
 
-                        // print out who one
-                        g.drawString(winner + " wins!", 300, 500);
-                    }
+                        }
+                        // if its a col win
+                        else if (t.getWinDirections() == t.COL_WIN) {
+                            g.setColor(Color.GREEN);
+                            g.fillRect(150 + (t.getWinIndex() * 100), 150 + (j * 100), 100, 100);
+                            if (t.getBoard()[j][t.getWinIndex()].getMarker() == TicTacToe.O_MARKER) {
+                                // draw an o
+                                // g.drawImage(oImage, i, j, this);
+                                g.drawImage(oImage, 150 + (t.getWinIndex() * 100), 150 + (j * 100), 100, 100, this);
+                            } else if (t.getBoard()[j][t.getWinIndex()].getMarker() == TicTacToe.X_MARKER) {
+                                // dran an X in teh place
+                                //g.drawImage(xImage,i, j, this);
+                                g.drawImage(xImage, 150 + (t.getWinIndex() * 100), 150 + (j * 100), 100, 100, this);
+                            }
+                            g.setColor(Color.black);
+                            t.getBoard()[j][t.getWinIndex()].draw(g);
+
+                        }
+                        // if there is a win for the right diagnol
+                        else if (t.getWinDirections() == t.DIAGONAL_RIGHT_WIN) {
+                            g.setColor(Color.GREEN);
+                            g.fillRect(150 + (j * 100), 150 + (j * 100), 100, 100);
+                            if (t.getBoard()[j][j].getMarker() == TicTacToe.O_MARKER) {
+                                // draw an o
+                                // g.drawImage(oImage, i, j, this);
+                                g.drawImage(oImage, 150 + (j * 100), 150 + (j * 100), 100, 100, this);
+                            } else if (t.getBoard()[j][j].getMarker() == TicTacToe.X_MARKER) {
+                                // dran an X in teh place
+                                //g.drawImage(xImage,i, j, this);
+                                g.drawImage(xImage, 150 + (j * 100), 150 + (j * 100), 100, 100, this);
+                            }
+                            g.setColor(Color.black);
+                            t.getBoard()[j][j].draw(g);
+                        }
+                        // if there is a win for the left diagnol
+                        else if (t.getWinDirections() == t.DIAGONAL_LEFT_WIN) {
+                            g.setColor(Color.GREEN);
+                            g.fillRect(150 + (j * 100), 150 + (x * 100), 100, 100);
+
+                            g.setColor(Color.black);
+                            t.getBoard()[i][j].draw(g);
+                            if (t.getBoard()[j][x].getMarker() == TicTacToe.O_MARKER) {
+                                // draw an o
+                                // g.drawImage(oImage, i, j, this);
+                                g.drawImage(oImage, 150 + (j * 100), 150 + (x * 100), 100, 100, this);
+                            } else if (t.getBoard()[j][x].getMarker() == TicTacToe.X_MARKER) {
+                                // dran an X in teh place
+                                //g.drawImage(xImage,i, j, this);
+                                g.drawImage(xImage, 150 + (j * 100), 150 + (x * 100), 100, 100, this);
+                            }
+
+                        }
 
                 }
+            }
+
+            if (t.checkTie()) {
+                g.drawString("Tie", 300, 500);
+            } else {
+                String winner = t.getWinner();
+                g.setColor(Color.black);
+                g.drawString(winner + " wins!", 300, 500);
             }
         }
 
 
 
-
     }
-
 
 }

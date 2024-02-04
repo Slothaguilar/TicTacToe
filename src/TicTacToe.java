@@ -78,6 +78,8 @@ public class TicTacToe
     public boolean checkTie() {
         return this.isGameOver && this.winner.equals(BLANK);
     }
+    public int getWinIndex(){ return this.winIndex; }
+    public int getWinDirections(){ return this.winDirection; }
 
     /**
      * Gets the direction and index of the win
