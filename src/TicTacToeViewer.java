@@ -57,14 +57,6 @@ public class TicTacToeViewer extends JFrame {
 
         // have the square draw itself
         // drawing the board
-        for (int i = 0; i < t.getBoard().length; i++) {
-            for (int j = 0; j < t.getBoard()[0].length; j++) {
-                // have the square draw itself
-                g.setColor(Color.black);
-                t.getBoard()[i][j].draw(g);
-            }
-        }
-        // when the game is over
         if (t.getGameOver()){
             g.setFont(new Font("Serif", Font.BOLD, 50));
             if (t.checkTie()) {
@@ -75,6 +67,15 @@ public class TicTacToeViewer extends JFrame {
                 g.drawString(winner + " wins!", 200, 500);
             }
         }
+        for (int i = 0; i < t.getBoard().length; i++) {
+            for (int j = 0; j < t.getBoard()[0].length; j++) {
+                // have the square draw itself
+                g.setColor(Color.black);
+                t.getBoard()[i][j].draw(g);
+            }
+        }
+        // when the game is over
+
 
 
     }

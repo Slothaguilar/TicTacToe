@@ -83,10 +83,10 @@ public class Square {
             g.setColor(Color.GREEN);
             g.fillRect(150+ (col*100),150 + (row*100), 100, 100 );
         }
-        if (marker == TicTacToe.O_MARKER){
+        if (marker.equals(TicTacToe.O_MARKER)){
             g.drawImage(o, 150 + (col * 100), 150 + (row * 100), 100, 100,board );
         }
-        else if (marker == TicTacToe.X_MARKER){
+        else if (marker.equals(TicTacToe.X_MARKER)){
             g.drawImage(x, 150 + (col * 100), 150 + (row * 100), 100, 100,board);
         }
         // public
