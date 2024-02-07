@@ -18,6 +18,11 @@ public class Square {
     private int row;
     private int col;
     private boolean isWinningSquare;
+   // private  TicTacToe t;
+    private TicTacToeViewer board;
+    private Image o;
+    private Image x;
+
 
     /**
      * Constructor to initialize one Square of the
@@ -25,12 +30,16 @@ public class Square {
      * @param row the row the square is in
      * @param col the column the square is in
      */
-    public Square(int row, int col) {
+    public Square(int row, int col, TicTacToeViewer board) {
         this.row = row;
         this.col = col;
 
         this.marker = TicTacToe.BLANK;
         this.isWinningSquare = false;
+        this.board = board;
+        x = board.getxImage();
+        o = board.getoImage();
+
     }
 
     /******************** Getters and Setters ********************/
@@ -66,6 +75,21 @@ public class Square {
         // square draw itself
 
         // should draw the right image
+        g.setColor(Color.black);
         g.drawRect(150 + (row*100), 150 + (col*100), 100, 100);
+        // if winningsquare
+        if (isWinningSquare){
+            //
+            g.setColor(Color.GREEN);
+            g.fillRect(150+ (col*100),150 + (row*100), 100, 100 );
+        }
+        if (marker == TicTacToe.O_MARKER){
+            g.drawImage(o, 150 + (col * 100), 150 + (row * 100), 100, 100,board );
+        }
+        else if (marker == TicTacToe.X_MARKER){
+            g.drawImage(x, 150 + (col * 100), 150 + (row * 100), 100, 100,board);
+        }
+        // public
+        // draw the image
     }
 }

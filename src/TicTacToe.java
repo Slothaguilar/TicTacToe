@@ -45,10 +45,11 @@ public class TicTacToe
      */
     public TicTacToe() {
         // Initialize Squares in the board
+        window = new TicTacToeViewer(this);
         this.board = new Square[3][3];
         for(int row = 0; row < this.board.length; row++) {
             for(int col = 0; col< this.board[row].length; col++) {
-                this.board[row][col] = new Square(row, col);
+                this.board[row][col] = new Square(row, col, window);
             }
         }
 
@@ -59,7 +60,6 @@ public class TicTacToe
         this.winIndex = -1;
         this.winDirection = -1;
 
-        window = new TicTacToeViewer(this);
     }
 
     /******************** Methods You May Find Helpful ********************/
@@ -78,8 +78,8 @@ public class TicTacToe
     public boolean checkTie() {
         return this.isGameOver && this.winner.equals(BLANK);
     }
-    public int getWinIndex(){ return this.winIndex; }
-    public int getWinDirections(){ return this.winDirection; }
+//    public int getWinIndex(){ return this.winIndex; }
+//    public int getWinDirections(){ return this.winDirection; }
 
     /**
      * Gets the direction and index of the win
